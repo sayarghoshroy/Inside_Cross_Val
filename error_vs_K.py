@@ -26,9 +26,6 @@ for x in range(100):
 for x in range(10000):
 	points_10000.append((x, math.sin(x) + error_10000[x]))
 
-# print(points_100)
-# print(points_10000)
-
 folds = []
 for i in range(2, 100):
 	if(100 % i == 0):
@@ -42,11 +39,9 @@ for fold_num in folds:
 	fold_means = []
 
 	for train, test in kfold.split(data_100):
-		# print("Train: ", (data_100[train]), " Test: ", (data_100[test]))
 		sample_errs = [error_100[i] for i in data_100[train]]
 		fold_means.append(np.mean(np.array(sample_errs)))
 
-	# print(fold_means)
 	mean = np.mean(fold_means)
 	var = np.var(fold_means)
 	mean_var_100.append((fold_num, mean, var))
@@ -66,11 +61,9 @@ for fold_num in folds:
 	fold_means = []
 
 	for train, test in kfold.split(data_10000):
-		# print("Train: ", (data_100[train]), " Test: ", (data_100[test]))
 		sample_errs = [error_10000[i] for i in data_10000[train]]
 		fold_means.append(np.mean(np.array(sample_errs)))
 
-	# print(fold_means)
 	mean = np.mean(fold_means)
 	var = np.var(fold_means)
 	mean_var_10000.append((fold_num, mean, var))
@@ -100,4 +93,3 @@ p_4 = fig.add_subplot(224, title='10000 Points: Error Mean v/s K')
 p_4.plot(x_b, y_b_mean,'o', linestyle = '--', color = 'r')
 
 plt.show()
-
